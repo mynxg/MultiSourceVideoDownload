@@ -20,6 +20,9 @@
   <properties>
     <java.version>1.8</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <fastjson.version>1.2.60</fastjson.version>
+    <mapstruct.version>1.4.2.Final</mapstruct.version>
+    <hutool.version>5.8.18</hutool.version>
   </properties>
 
   <dependencies>
@@ -34,10 +37,6 @@
         </exclusion>
       </exclusions>
     </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-thymeleaf</artifactId>
-    </dependency>
     <!-- test -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -48,9 +47,22 @@
     <dependency>
       <groupId>com.alibaba</groupId>
       <artifactId>fastjson</artifactId>
-      <version>1.2.60</version>
+      <version>${fastjson.version}</version>
     </dependency>
-
+    <!-- MapStruct begin -->
+    <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+      <version>${mapstruct.version}</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct-processor -->
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct-processor</artifactId>
+      <version>${mapstruct.version}</version>
+    </dependency>
+    <!-- MapStruct end -->
     <dependency>
       <groupId>org.apache.dubbo</groupId>
       <artifactId>dubbo</artifactId>
@@ -69,6 +81,14 @@
 <!--      <version>0.0.1-SNAPSHOT</version>-->
 <!--    </dependency>-->
 
+    <!-- hutool 的依赖配置-->
+    <dependency>
+      <groupId>cn.hutool</groupId>
+      <artifactId>hutool-bom</artifactId>
+      <version>${hutool.version}</version>
+      <type>pom</type>
+      <scope>import</scope>
+    </dependency>
   </dependencies>
 
   <build>
