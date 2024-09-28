@@ -63,17 +63,18 @@
       <version>${mapstruct.version}</version>
     </dependency>
     <!-- MapStruct end -->
-    <dependency>
-      <groupId>org.apache.dubbo</groupId>
-      <artifactId>dubbo</artifactId>
-      <version>2.7.1</version>
-    </dependency>
 
-    <dependency>
-      <groupId>org.apache.dubbo</groupId>
-      <artifactId>dubbo-spring-boot-starter</artifactId>
-      <version>2.7.1</version>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.apache.dubbo</groupId>-->
+<!--      <artifactId>dubbo</artifactId>-->
+<!--      <version>2.7.1</version>-->
+<!--    </dependency>-->
+
+<!--    <dependency>-->
+<!--      <groupId>org.apache.dubbo</groupId>-->
+<!--      <artifactId>dubbo-spring-boot-starter</artifactId>-->
+<!--      <version>2.7.1</version>-->
+<!--    </dependency>-->
     <!--   rpc     -->
 <!--    <dependency>-->
 <!--      <groupId>com.nxg.lottery</groupId>-->
@@ -89,6 +90,21 @@
       <type>pom</type>
       <scope>import</scope>
     </dependency>
+    <!-- hutool -->
+    <dependency>
+      <groupId>cn.hutool</groupId>
+      <artifactId>hutool-core</artifactId>
+      <version>${hutool.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cn.hutool</groupId>
+      <artifactId>hutool-http</artifactId>
+      <version>${hutool.version}</version>
+    </dependency>
+
+
+
   </dependencies>
 
   <build>
