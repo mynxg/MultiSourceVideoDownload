@@ -14,11 +14,10 @@ import javax.annotation.Resource;
  * @description
  */
 @Slf4j
-public abstract class AbstractVideoService implements IVideoApiService{
+public abstract class AbstractVideoService implements IVideoApiService {
 
     @Resource
     private VideoUrlParserFactory videoUrlParserFactory;
-
 
 
     @Override
@@ -28,9 +27,9 @@ public abstract class AbstractVideoService implements IVideoApiService{
         //1.解析url，拿到平台视频id
         IPlatformVideoUrlParser videoUrlParserService = videoUrlParserFactory.getVideoUrlParserService(videoUrlPlatformType);
         String name = videoUrlParserService.getClass().getName();
-        log.info("videoUrlParserService:{}",name);
+        log.info("videoUrlParserService:{}", name);
         String videoId = videoUrlParserService.parseVideoId(url);
-        log.info("videoId:{}",videoId);
+        log.info("videoId:{}", videoId);
 
         //2.根据平台视频id，获取 aid和cid以及视频信息
         VideoInfoResponse.VideoInfo videoInfo = videoUrlParserService.getVideoInfo(videoId);
@@ -41,6 +40,7 @@ public abstract class AbstractVideoService implements IVideoApiService{
 
     /**
      * 获取视频源信息
+     *
      * @param videoInfo
      * @return
      */
@@ -48,6 +48,7 @@ public abstract class AbstractVideoService implements IVideoApiService{
 
     /**
      * 获取视频平台类型
+     *
      * @param videoUrl
      * @return
      */

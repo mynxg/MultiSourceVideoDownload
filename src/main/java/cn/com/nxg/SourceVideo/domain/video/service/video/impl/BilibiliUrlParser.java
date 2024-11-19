@@ -2,10 +2,10 @@ package cn.com.nxg.SourceVideo.domain.video.service.video.impl;
 
 import cn.com.nxg.SourceVideo.domain.video.model.entity.videoV2.VideoV2InfoResponseDTO;
 import cn.com.nxg.SourceVideo.domain.video.service.api.IBilibiliApiService;
-import cn.com.nxg.SourceVideo.domain.video.service.api.dto.BiliResponseDTO;
 import cn.com.nxg.SourceVideo.domain.video.service.api.dto.BiliVideoInfoResponseDTO;
 import cn.com.nxg.SourceVideo.domain.video.service.video.IPlatformVideoUrlParser;
 import cn.com.nxg.SourceVideo.infrastructure.common.VideoInfoResponse;
+import cn.hutool.http.HttpUtil;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
 
@@ -56,15 +56,33 @@ public class BilibiliUrlParser implements IPlatformVideoUrlParser {
      * @return 原始 URL
      */
     private String resolveShortUrl(String videoUrl) {
-        // 判断链接是否以 "【" 开头
-        if (videoUrl.startsWith("【")) {
-            // 使用正则表达式分割，提取"】"后面的部分
-            String[] parts = videoUrl.split("】 ", 2);
-            if (parts.length > 1) {
-                return parts[1];  // 返回实际的URL部分
+        try {
+            // 判断链接是否以 "【" 开头
+            if (videoUrl.startsWith("【")) {
+                // 使用正则表达式分割，提取"】"后面的部分
+                String[] parts = videoUrl.split("】 ", 2);
+                if (parts.length > 1) {
+                    return parts[1];  // 返回实际的URL部分
+                }
             }
+
+            // 使用 HTTP 客户端进行请求，获取重定向后的 URL
+            String body = HttpUtil.createGet(videoUrl).execute().body();
+            // 正则表达式匹配 <a href="..."> 中的URL
+            String regex = "<a href=\"(.*?)\">";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(body);
+
+            String extractedUrl = null;
+            if (matcher.find()) {
+                extractedUrl = matcher.group(1);  // 获取第一个捕获组，也就是URL
+            } else {
+                // 如果没有匹配到，返回null
+            }
+            return extractedUrl;
+        } catch (Exception e) {
+            throw new RuntimeException("解析b23.tv短链接失败");
         }
-        return videoUrl;  // 如果不符合条件则返回原始链接
     }
 
     @Override
@@ -86,7 +104,7 @@ public class BilibiliUrlParser implements IPlatformVideoUrlParser {
         }
     }
 
-    public VideoInfoResponse getBiliVideoInfo(VideoInfoResponse.VideoInfo  videoInfo){
+    public VideoInfoResponse getBiliVideoInfo(VideoInfoResponse.VideoInfo videoInfo) {
         try {
             //"https://api.bilibili.com/x/player/playurl?avid=" + avid + "&cid=" + cid + "&qn=80&type=mp4&platform=html5&high_quality=1"
             Call<BiliVideoInfoResponseDTO> biliVideoUrl = bilibiliApiService.getBiliVideoUrl(videoInfo.getAid(), videoInfo.getCid(), 80, "mp4", "html5", 1);
@@ -104,7 +122,7 @@ public class BilibiliUrlParser implements IPlatformVideoUrlParser {
                             .cid(videoInfo.getCid())
                             .build()
                     ).build();
-        }catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
