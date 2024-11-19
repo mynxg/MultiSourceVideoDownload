@@ -1,1 +1,0 @@
-package cn.com.nxg.SourceVideo.domain;

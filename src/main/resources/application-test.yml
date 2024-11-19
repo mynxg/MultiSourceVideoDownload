@@ -1,0 +1,30 @@
+
+server:
+  port: 8082
+  tomcat:
+    mbeanregistry:
+      enabled: true
+    max-connections: 100
+    threads:
+      max: 100
+      min-spare: 50
+    accept-count: 10
+
+# 应用配置
+app:
+  config:
+    # 版本
+    api-version: v1
+
+#不同平台url
+video:
+  api:
+    bilibili-url: http://api.bilibili.com
+    yutube-url: https://www.yutube.com
+
+
+# 日志
+logging:
+  level:
+    root: info
+  config: classpath:logback-spring.xml

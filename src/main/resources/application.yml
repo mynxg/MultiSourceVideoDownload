@@ -1,12 +1,6 @@
-server:
-  port: 8082
-
-
-## Dubbo 广播方式配置
-#dubbo:
-#  application:
-#    name: Lottery
-#    version: 1.0.0
-#  protocol:
-#    name: dubbo
-#    port: 20880
+spring:
+  config:
+    name: video-down-app
+  profiles:
+    active: dev
+#    active: prod
