@@ -2,9 +2,12 @@ package cn.com.nxg.SourceVideo.interfaces;
 
 import cn.com.nxg.SourceVideo.domain.video.service.IVideoApiService;
 import cn.com.nxg.SourceVideo.infrastructure.common.VideoInfoResponse;
+import cn.com.nxg.SourceVideo.infrastructure.util.ValidateUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
@@ -14,7 +17,9 @@ import javax.annotation.Resource;
  * @createTime 2024/11/19 23:04
  * @description 视频下载接口
  */
+@Slf4j
 @RequestMapping("/api/${app.config.api-version}/video/")
+@RestController
 public class VideoDownController {
 
     @Resource
@@ -26,20 +31,12 @@ public class VideoDownController {
     @RequestMapping(value = "/parser_url",method = RequestMethod.GET)
     public VideoInfoResponse getAvByUrl(@RequestParam("url") String url) {
         //判断url是否符合网址格式要求
-        if (!isValidUrl(url)){
+        if (!ValidateUtils.isValidUrl(url)){
             return VideoInfoResponse.builder().code(400).message("url格式不正确").build();
         }
 
         return videoApiService.getOriginalVideoUrl(url);
     }
 
-    /**
-     * 判断url是否合法
-     * @param url
-     * @return
-     */
-    private boolean isValidUrl(String url) {
-        String urlPattern = "^(https?|ftp)://[\\w.-]+(?:\\.[\\w\\.-]+)+[/\\w\\.-]*$";
-        return url != null && url.matches(urlPattern);
-    }
+
 }
