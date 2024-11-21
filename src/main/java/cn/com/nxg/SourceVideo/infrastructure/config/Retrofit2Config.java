@@ -2,6 +2,7 @@ package cn.com.nxg.SourceVideo.infrastructure.config;
 
 import cn.com.nxg.SourceVideo.domain.video.service.api.IBilibiliApiService;
 import cn.com.nxg.SourceVideo.domain.video.service.api.IYutubeApiService;
+import cn.com.nxg.SourceVideo.infrastructure.common.Constants;
 import com.google.common.cache.Cache;
 import okhttp3.OkHttpClient;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,12 +31,11 @@ public class Retrofit2Config {
 
     @Resource
     private Cache<String, String>  biliCookieCache;
-    private static final String cookie_key = "bililogin_";
 
     @Bean("bilibiliRetrofit")
     public Retrofit bilibiliRetrofit(){
         //TODO: cookie缓存失效问题,待优化
-        String biliCookie = biliCookieCache.getIfPresent(cookie_key+"ip");
+        String biliCookie = biliCookieCache.getIfPresent(Constants.BILI_COOKIE_KEY+"ip");
         if (biliCookie != null){
             OkHttpClient client = new OkHttpClient.Builder()
                     .addInterceptor(new CookieInterceptor(biliCookie))

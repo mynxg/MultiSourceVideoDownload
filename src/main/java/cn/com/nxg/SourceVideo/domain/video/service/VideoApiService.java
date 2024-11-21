@@ -5,6 +5,7 @@ import cn.com.nxg.SourceVideo.domain.video.service.api.IBilibiliApiService;
 import cn.com.nxg.SourceVideo.domain.video.service.api.dto.BiliLoginResponseDTO;
 import cn.com.nxg.SourceVideo.domain.video.service.api.dto.BiliQrcodeResponseDTO;
 import cn.com.nxg.SourceVideo.domain.video.service.api.dto.BiliVideoInfoResponseDTO;
+import cn.com.nxg.SourceVideo.infrastructure.common.Constants;
 import cn.com.nxg.SourceVideo.infrastructure.common.ResponseCode;
 import cn.com.nxg.SourceVideo.infrastructure.common.VideoInfoResponse;
 import com.google.common.cache.Cache;
@@ -95,7 +96,7 @@ public class VideoApiService extends AbstractVideoService{
 
     @Resource
     private Cache<String, String>  biliCookieCache;
-    private static final String cookie_key = "bililogin_";
+
     @Override
     public BiliLoginResponseDTO getBiliLoginStatus(String qrcode_key) {
         Call<BiliLoginResponseDTO> biliLoginStatus = bilibiliApiService.getBiliLoginStatus(qrcode_key);
@@ -104,9 +105,9 @@ public class VideoApiService extends AbstractVideoService{
             if (body.getCode() == 0) {
                 //登录成功，缓存cookie
                 //TODO:待优化
-                biliCookieCache.put(cookie_key+"ip", body.getData().getRefresh_token());
+                biliCookieCache.put(Constants.BILI_COOKIE_KEY+"ip", body.getData().getRefresh_token());
             }else {
-                biliCookieCache.put(cookie_key+"ip", "");
+                biliCookieCache.put(Constants.BILI_COOKIE_KEY+"ip", "");
             }
             return body;
         } catch (Exception e) {
