@@ -21,7 +21,6 @@ video:
   api:
     bilibili-url: http://api.bilibili.com
     yutube-url: https://www.yutube.com
-  down-path:
 
 # yt-dlp 不同平台下载命令
 yt-dlp:
