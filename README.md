@@ -1,6 +1,6 @@
 ## 视频下载
 
-## bilibili_downloader
+## video_downloader
 
 视频解析接口：
 请求报文：
@@ -10,6 +10,7 @@ http://localhost:8082/api/v1/video/parser_url?url=https://www.bilibili.com/video
 > url 参数,视频url
 > get请求
 > 返回json数据
+> url传参目前支持  bilibili、yutube
 
 返回报文：
 ```
@@ -26,3 +27,16 @@ http://localhost:8082/api/v1/video/parser_url?url=https://www.bilibili.com/video
     "message": "success"
 }
 ```
+
+
+> 注意：在拉取代码后需要先下载 yt-dlp.exe 和yt-dlp_linux
+> 
+> 1.下载地址：https://github.com/yt-dlp/yt-dlp/releases
+> 
+> 2.将 yt-dlp.exe 和 yt-dlp_linux 放到项目ytdown目录下
+> 
+> 这里也提供了下载地址：[ytdown.zip](https://nxg.lanzoul.com/isYfD2fs763c)
+> 
+> 版本：2024.11.18
+> 
+
