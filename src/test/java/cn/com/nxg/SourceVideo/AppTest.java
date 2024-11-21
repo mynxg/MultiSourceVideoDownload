@@ -1,14 +1,19 @@
 package cn.com.nxg.SourceVideo;
 
 import cn.com.nxg.SourceVideo.domain.video.service.IVideoApiService;
+import cn.com.nxg.SourceVideo.domain.video.service.api.IBilibiliApiService;
+import cn.com.nxg.SourceVideo.domain.video.service.api.dto.BiliLoginResponseDTO;
+import cn.com.nxg.SourceVideo.domain.video.service.api.dto.BiliQrcodeResponseDTO;
 import cn.com.nxg.SourceVideo.domain.video.service.api.dto.BiliResponseDTO;
 import cn.com.nxg.SourceVideo.infrastructure.common.VideoInfoResponse;
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.google.common.cache.Cache;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import retrofit2.Call;
 
 import javax.annotation.Resource;
 import java.util.regex.Matcher;
@@ -30,6 +35,31 @@ public class AppTest {
         VideoInfoResponse originalVideoUrl = videoApiService.getOriginalVideoUrl(url);
         log.info("结果：{}", JSON.toJSON(originalVideoUrl));
     }
+
+    @Resource
+    private Cache<String,Integer> biliCookieCache;
+    @Test
+    public void test_google_cache_01() {
+        biliCookieCache.put("test",1);
+        Integer test = biliCookieCache.getIfPresent("test");
+        log.info("结果：{}", test);
+    }
+
+//    @Resource
+//    private IBilibiliApiService biliLoginApiService;
+//    @Test
+//    public void test_google_cache_02() {
+//        Call<BiliQrcodeResponseDTO> biliQrcode = biliLoginApiService.getBiliQrcode();
+//        try {
+//            BiliQrcodeResponseDTO body = biliQrcode.execute().body();
+//            log.info("结果：{}", JSON.toJSON(body));
+//            Call<BiliLoginResponseDTO> biliLoginStatus = biliLoginApiService.getBiliLoginStatus(body.getData().getQrcode_key());
+//            BiliLoginResponseDTO body1 = biliLoginStatus.execute().body();
+//            log.info("结果：{}", JSON.toJSON(body1));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Test
     public void test01() {
