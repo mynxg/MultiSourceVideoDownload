@@ -1,7 +1,9 @@
 package cn.com.nxg.SourceVideo.domain.video.service;
 
+import cn.com.nxg.SourceVideo.domain.video.model.valobj.PlatformTypeVO;
 import cn.com.nxg.SourceVideo.domain.video.service.video.IPlatformVideoUrlParser;
 import cn.com.nxg.SourceVideo.domain.video.service.video.factory.VideoUrlParserFactory;
+import cn.com.nxg.SourceVideo.infrastructure.common.ResponseCode;
 import cn.com.nxg.SourceVideo.infrastructure.common.VideoInfoResponse;
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,8 +36,16 @@ public abstract class AbstractVideoService implements IVideoApiService {
         //2.根据平台视频id，获取 aid和cid以及视频信息
         VideoInfoResponse.VideoInfo videoInfo = videoUrlParserService.getVideoInfo(videoId);
 
+        if (PlatformTypeVO.BILIBILI.getCode().equals(videoUrlPlatformType)){
+            return getBiliVideoInfo(videoInfo);
+        }
+
         //3. 获取视频源信息
-        return getVideoInfo(videoInfo);
+        return VideoInfoResponse.builder()
+                .code(ResponseCode.SUCCESS.getCode())
+                .message(ResponseCode.SUCCESS.getMsg())
+                .data(videoInfo)
+                .build();
     }
 
     /**
@@ -44,7 +54,7 @@ public abstract class AbstractVideoService implements IVideoApiService {
      * @param videoInfo
      * @return
      */
-    protected abstract VideoInfoResponse getVideoInfo(VideoInfoResponse.VideoInfo videoInfo);
+    protected abstract VideoInfoResponse getBiliVideoInfo(VideoInfoResponse.VideoInfo videoInfo);
 
     /**
      * 获取视频平台类型

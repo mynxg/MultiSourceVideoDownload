@@ -13,7 +13,12 @@ public class ValidateUtils {
      * @return
      */
     public static boolean isValidUrl(String url) {
-        String urlPattern = "^(https?|ftp)://[\\w.-]+(?:\\.[\\w\\.-]+)+[/\\w\\.-]*$";
-        return url != null && url.matches(urlPattern);
+        if (url == null || url.isEmpty()) {
+            return false;
+        }
+        // 正确关闭字符类的正则表达式
+        String urlPattern = "^(https?|ftp)://[\\w.-]+(?:\\.[\\w\\.-]+)+([/\\w\\.-]*)*(\\?([\\w\\-._~:/?#\\[\\]@!$&'()*+,;=%]+)*)?$";
+
+        return url.matches(urlPattern);
     }
 }

@@ -4,6 +4,7 @@ import cn.com.nxg.SourceVideo.domain.video.model.entity.videoV2.VideoV2InfoRespo
 import cn.com.nxg.SourceVideo.domain.video.service.api.IBilibiliApiService;
 import cn.com.nxg.SourceVideo.domain.video.service.api.dto.BiliVideoInfoResponseDTO;
 import cn.com.nxg.SourceVideo.domain.video.service.video.IPlatformVideoUrlParser;
+import cn.com.nxg.SourceVideo.infrastructure.common.ResponseCode;
 import cn.com.nxg.SourceVideo.infrastructure.common.VideoInfoResponse;
 import cn.hutool.http.HttpUtil;
 import org.springframework.stereotype.Service;
@@ -111,8 +112,8 @@ public class BilibiliUrlParser implements IPlatformVideoUrlParser {
             BiliVideoInfoResponseDTO body = biliVideoUrl.execute().body();
 
             return VideoInfoResponse.builder()
-                    .code(200)
-                    .message("success")
+                    .code(ResponseCode.SUCCESS.getCode())
+                    .message(ResponseCode.SUCCESS.getMsg())
                     .data(VideoInfoResponse.VideoInfo.builder()
                             .url(body.getData().getDurl().get(0).getUrl())
                             .title(videoInfo.getTitle())

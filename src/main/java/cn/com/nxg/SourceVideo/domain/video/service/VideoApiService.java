@@ -28,7 +28,7 @@ public class VideoApiService extends AbstractVideoService{
     }
 
     @Override
-    protected VideoInfoResponse getVideoInfo(VideoInfoResponse.VideoInfo videoInfo) {
+    protected VideoInfoResponse getBiliVideoInfo(VideoInfoResponse.VideoInfo videoInfo) {
         try {
             //"https://api.bilibili.com/x/player/playurl?avid=" + avid + "&cid=" + cid + "&qn=80&type=mp4&platform=html5&high_quality=1"
             Call<BiliVideoInfoResponseDTO> biliVideoUrl = bilibiliApiService.getBiliVideoUrl(videoInfo.getAid(), videoInfo.getCid(), 80, "mp4", "html5", 1);

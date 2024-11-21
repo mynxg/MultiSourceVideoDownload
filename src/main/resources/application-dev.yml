@@ -22,6 +22,12 @@ video:
     bilibili-url: http://api.bilibili.com
     yutube-url: https://www.yutube.com
 
+# yt-dlp 不同平台下载命令
+yt-dlp:
+  path-windows: src/main/resources/ytdown/yt-dlp.exe
+  path-linux: src/main/resources/ytdown/yt-dlp_linux
+
+
 
 # 日志
 logging:
