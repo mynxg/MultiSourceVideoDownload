@@ -1,6 +1,9 @@
 package cn.com.nxg.SourceVideo.domain.video.service;
 
+import cn.com.nxg.SourceVideo.domain.video.service.api.dto.BiliLoginResponseDTO;
+import cn.com.nxg.SourceVideo.domain.video.service.api.dto.BiliQrcodeResponseDTO;
 import cn.com.nxg.SourceVideo.infrastructure.common.VideoInfoResponse;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author keney
@@ -16,4 +19,17 @@ public interface IVideoApiService {
      * @return
      */
     VideoInfoResponse getOriginalVideoUrl(String url);
+
+    /**
+     * 获取b站登录二维码
+     * @return
+     */
+    BiliQrcodeResponseDTO getBiliQrcode();
+
+    /**
+     * 检查是否登录（是否扫码成功）
+     * @param qrcode_key
+     * @return
+     */
+    BiliLoginResponseDTO getBiliLoginStatus(String qrcode_key);
 }

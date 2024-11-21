@@ -1,6 +1,8 @@
 package cn.com.nxg.SourceVideo.domain.video.service.api;
 
 import cn.com.nxg.SourceVideo.domain.video.model.entity.videoV2.VideoV2InfoResponseDTO;
+import cn.com.nxg.SourceVideo.domain.video.service.api.dto.BiliLoginResponseDTO;
+import cn.com.nxg.SourceVideo.domain.video.service.api.dto.BiliQrcodeResponseDTO;
 import cn.com.nxg.SourceVideo.domain.video.service.api.dto.BiliVideoInfoResponseDTO;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -45,4 +47,19 @@ public interface IBilibiliApiService {
             @Query("platform")String platform,
             @Query("high_quality")int high_quality
     );
+
+    /**
+     * 获取二维码
+     * @return
+     */
+    @GET("/x/passport-login/web/qrcode/generate")
+    Call<BiliQrcodeResponseDTO> getBiliQrcode();
+
+    /**
+     * 扫码登录状态（成功）
+     * @param qrcode_key  密钥超时为180秒
+     * @return
+     */
+    @GET("/x/passport-login/web/qrcode/poll")
+    Call<BiliLoginResponseDTO> getBiliLoginStatus(@Query("qrcode_key")String qrcode_key);
 }

@@ -45,21 +45,21 @@ public class AppTest {
         log.info("结果：{}", test);
     }
 
-//    @Resource
-//    private IBilibiliApiService biliLoginApiService;
-//    @Test
-//    public void test_google_cache_02() {
-//        Call<BiliQrcodeResponseDTO> biliQrcode = biliLoginApiService.getBiliQrcode();
-//        try {
-//            BiliQrcodeResponseDTO body = biliQrcode.execute().body();
-//            log.info("结果：{}", JSON.toJSON(body));
-//            Call<BiliLoginResponseDTO> biliLoginStatus = biliLoginApiService.getBiliLoginStatus(body.getData().getQrcode_key());
-//            BiliLoginResponseDTO body1 = biliLoginStatus.execute().body();
-//            log.info("结果：{}", JSON.toJSON(body1));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
+    @Resource
+    private IBilibiliApiService biliLoginApiService;
+    @Test
+    public void test_google_cache_02() {
+        Call<BiliQrcodeResponseDTO> biliQrcode = biliLoginApiService.getBiliQrcode();
+        try {
+            BiliQrcodeResponseDTO body = biliQrcode.execute().body();
+            log.info("结果：{}", JSON.toJSON(body));
+            Call<BiliLoginResponseDTO> biliLoginStatus = biliLoginApiService.getBiliLoginStatus(body.getData().getQrcode_key());
+            BiliLoginResponseDTO body1 = biliLoginStatus.execute().body();
+            log.info("结果：{}", JSON.toJSON(body1));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Test
     public void test01() {

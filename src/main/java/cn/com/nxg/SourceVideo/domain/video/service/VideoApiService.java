@@ -2,9 +2,13 @@ package cn.com.nxg.SourceVideo.domain.video.service;
 
 import cn.com.nxg.SourceVideo.domain.video.model.valobj.PlatformTypeVO;
 import cn.com.nxg.SourceVideo.domain.video.service.api.IBilibiliApiService;
+import cn.com.nxg.SourceVideo.domain.video.service.api.dto.BiliLoginResponseDTO;
+import cn.com.nxg.SourceVideo.domain.video.service.api.dto.BiliQrcodeResponseDTO;
 import cn.com.nxg.SourceVideo.domain.video.service.api.dto.BiliVideoInfoResponseDTO;
 import cn.com.nxg.SourceVideo.infrastructure.common.ResponseCode;
 import cn.com.nxg.SourceVideo.infrastructure.common.VideoInfoResponse;
+import com.google.common.cache.Cache;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
 
@@ -16,6 +20,7 @@ import javax.annotation.Resource;
  * @createTime 2024/11/19 19:02
  * @description
  */
+@Slf4j
 @Service
 public class VideoApiService extends AbstractVideoService{
 
@@ -75,5 +80,38 @@ public class VideoApiService extends AbstractVideoService{
         }
 
         return videoType;
+    }
+
+    @Override
+    public BiliQrcodeResponseDTO getBiliQrcode() {
+        Call<BiliQrcodeResponseDTO> biliQrcode = bilibiliApiService.getBiliQrcode();
+        try {
+            return biliQrcode.execute().body();
+        } catch (Exception e) {
+            log.error("获取bilibili二维码异常", e);
+        }
+        return null;
+    }
+
+    @Resource
+    private Cache<String, String>  biliCookieCache;
+    private static final String cookie_key = "bililogin_";
+    @Override
+    public BiliLoginResponseDTO getBiliLoginStatus(String qrcode_key) {
+        Call<BiliLoginResponseDTO> biliLoginStatus = bilibiliApiService.getBiliLoginStatus(qrcode_key);
+        try {
+            BiliLoginResponseDTO body = biliLoginStatus.execute().body();
+            if (body.getCode() == 0) {
+                //登录成功，缓存cookie
+                //TODO:待优化
+                biliCookieCache.put(cookie_key+"ip", body.getData().getRefresh_token());
+            }else {
+                biliCookieCache.put(cookie_key+"ip", "");
+            }
+            return body;
+        } catch (Exception e) {
+            log.error("获取bilibili登录状态异常", e);
+        }
+        return null;
     }
 }

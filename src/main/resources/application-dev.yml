@@ -19,6 +19,7 @@ app:
 #不同平台url
 video:
   api:
+    bilibili-login-url: https://passport.bilibili.com
     bilibili-url: http://api.bilibili.com
     yutube-url: https://www.yutube.com
 
