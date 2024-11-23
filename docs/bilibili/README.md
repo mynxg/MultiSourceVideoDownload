@@ -24,3 +24,8 @@ http://localhost:8082/api/v1/video/parser_url?url=https://www.bilibili.com/video
     "message": "success"
 }
 ```
+
+
+## 使用说明
+- [bilibili-API-collect](https://github.com/SocialSisterYi/bilibili-API-collect)
+
