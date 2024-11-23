@@ -1,3 +1,10 @@
+[//]: # ([![]&#40;https://img.shields.io/github/license/mynxg/MultiSourceVideoDownload?color=4D7A97&logo=apache&#41;]&#40;https://github.com/me-shaon/GLWTPL/blob/master/LICENSE&#41;  )
+[![](https://img.shields.io/github/stars/mynxg/MultiSourceVideoDownload)](https://github.com/mynxg/MultiSourceVideoDownload/stargazers)
+[![](https://img.shields.io/github/issues/mynxg/MultiSourceVideoDownload)](https://github.com/mynxg/MultiSourceVideoDownload/issues)
+[![](https://img.shields.io/github/issues-closed/mynxg/MultiSourceVideoDownload)](https://github.com/mynxg/MultiSourceVideoDownload/issues?q=is%3Aissue+is%3Aclosed)
+[![](https://img.shields.io/github/issues-pr/mynxg/MultiSourceVideoDownload)](https://github.com/mynxg/MultiSourceVideoDownload/pulls)
+[![](https://img.shields.io/github/issues-pr-closed/mynxg/MultiSourceVideoDownload)](https://github.com/mynxg/MultiSourceVideoDownload/pulls?q=is%3Apr+is%3Aclosed)
+
 [简体中文](README.md) | [English](./docs/README-EN.md)
 ## 视频下载与解析 API
 > 该 API 提供视频下载和解析服务，目前支持 Bilibili 和 YouTube。您可以通过此 API 下载视频、解析视频的元数据、并检查指定视频链接是否受支持。
@@ -98,3 +105,6 @@ curl -X GET "http://localhost:8082/api/v1/video/parser_url?url=https://www.bilib
 ## 许可证
 此项目使用 [GLWTPL](https://github.com/me-shaon/GLWTPL/blob/master/LICENSE) 许可证。
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=mynxg/MultiSourceVideoDownload&type=Date)](https://star-history.com/#mynxg/MultiSourceVideoDownload&Date)

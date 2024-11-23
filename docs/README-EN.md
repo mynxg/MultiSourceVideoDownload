@@ -1,3 +1,11 @@
+[//]: # ([![]&#40;https://img.shields.io/github/license/mynxg/MultiSourceVideoDownload?color=4D7A97&logo=apache&#41;]&#40;https://github.com/me-shaon/GLWTPL/blob/master/LICENSE&#41;  )
+[![](https://img.shields.io/github/stars/mynxg/MultiSourceVideoDownload)](https://github.com/mynxg/MultiSourceVideoDownload/stargazers)
+[![](https://img.shields.io/github/issues/mynxg/MultiSourceVideoDownload)](https://github.com/mynxg/MultiSourceVideoDownload/issues)
+[![](https://img.shields.io/github/issues-closed/mynxg/MultiSourceVideoDownload)](https://github.com/mynxg/MultiSourceVideoDownload/issues?q=is%3Aissue+is%3Aclosed)
+[![](https://img.shields.io/github/issues-pr/mynxg/MultiSourceVideoDownload)](https://github.com/mynxg/MultiSourceVideoDownload/pulls)
+[![](https://img.shields.io/github/issues-pr-closed/mynxg/MultiSourceVideoDownload)](https://github.com/mynxg/MultiSourceVideoDownload/pulls?q=is%3Apr+is%3Aclosed)
+
+
 [简体中文](README.md) | [English](./docs/README-EN.md)
 
 # Video Download & Parsing API
@@ -108,3 +116,7 @@ Contributions are welcome! Please submit a Pull Request or report any issues.
 ## License
 
 This project is licensed under [GLWTPL](https://github.com/me-shaon/GLWTPL/blob/master/LICENSE).
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=mynxg/MultiSourceVideoDownload&type=Date)](https://star-history.com/#mynxg/MultiSourceVideoDownload&Date)
