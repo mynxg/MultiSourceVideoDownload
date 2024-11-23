@@ -49,6 +49,7 @@ cd MultiSourceVideoDownload
 | 参数名 | 是否必须 | 类型 | 描述 |
 |--------|----------|---------|---------|
 | url | 是 | string | 视频url |
+
 请求示例：
 ```bash
 curl -X GET "http://localhost:8082/api/v1/video/parser_url?url=https://www.bilibili.com/video/BV1DnUKYYEkj/?vd_source=83e20cd531608ce070908ea29997e648"
